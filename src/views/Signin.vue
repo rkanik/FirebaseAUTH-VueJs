@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         showPass(){
-            //console.log('showPass');
+            
             this.sh_ps = !this.sh_ps ;
             if(this.sh_ps){
                 this.eye_src = 'https://img.icons8.com/ios-glyphs/30/000000/visible.png'
@@ -61,25 +61,25 @@ export default {
         },
         SigninUser(){
             this.isLoading = true;
-            //console.log('SigninUser');
+            
             this.email === '' ? this.em_err = true : this.em_err = false ;
             this.password === '' ? this.pass_err = true : this.pass_err = false ;
 
             if( this.em_err || this.pass_err ){
-                //console.log('Filled error');
+                
                 this.isLoading = false;
             }
             else{
                 auth.signInWithEmailAndPassword(this.email,this.password)
                     .then( result => {
-                        //console.log(result);
-                        //bus.$emit('userInfo',result);
+                        
+
                         this.isLoading = true;
                         this.$router.go({path:this.$router.path});
-                        // this.$router.push('/');
+
                     }).catch((err) => {
-                        //console.log('Signin error!');
-                        //console.log(err);
+                        
+                        
                         if( err.code === 'auth/wrong-password' ){
                             this.pass_err = true ;
                             this.ps_msg = 'Wrong password!';
@@ -136,10 +136,6 @@ export default {
     }
 
     @keyframes animLoading{
-        /* 0%{ left: 0 ; width: 0;}
-        40%{ width: 22rem ;}
-        60%{ width: 22rem ;}
-        100%{ left: 24rem; width: 0;} */
         0%{
             left: 0; width: 0;
         }

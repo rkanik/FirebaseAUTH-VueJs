@@ -22,15 +22,15 @@ export default {
     data(){
         return{
 
-            // Vars
+            
             recentSearches:[],  mostSearched:[],
 
-            // Booleans
+            
             isLoading:true
         }
     },
     created(){
-        // Loading Users most searched word
+        
         db.collection('Users').where('_id', '==', auth.currentUser.uid )
           .get().then((result) => {
             result.forEach( doc =>{
@@ -72,7 +72,7 @@ export default {
 
 <style lang='scss' scoped>
 
-    // Importing All Material colors
+    
     @import '../assets/CSS/colors.scss';
 
     .onhistory{

@@ -63,17 +63,17 @@ export default {
     data(){
         return{
 
-            // Empty VARS
+            
             userName:'',    firstName:'',   lastName:'',
             email   :'',    password :'',   cPass   :'',
             ranUserName:[],
 
-            // Booleans
+            
             usr_err:false,  fn_err  :false,   ln_err   :false,
             em_err :false,  pass_err:false,   cPass_err:false,
             to_er  :false,  showLoading:false,userSug:false,
 
-            // Strings
+            
             us_msg  :'User name have to be unique',
             em_msg  :'Enter Email Address',
             ps_note :'Use 6 or more characters with a mix of letters, numbers & symbols',
@@ -95,7 +95,7 @@ export default {
                 this.us_msg = 'Enter User name';
                 this.to_er = true;
                 this.showLoading = false ;
-                //return;
+                
             }else{
                 this.usr_err = false;
                 this.us_msg = 'User name have to be unique';
@@ -168,14 +168,17 @@ export default {
                             this.usr_err = true;
                             this.us_msg = 'User name has already been taken';
                             this.showLoading = false;
+
                             function RandomLength(ranLen){
                                 let highDigit = '' ;
                                 while ( ranLen > 0 ) {highDigit += '9';ranLen--}
                                 return highDigit;}
+
                             let uNameNoDigit = this.userName.replace(/[0-9]/g, '');
+
                             function RandomNumber( highest ){
                                 return Math.floor(( Math.random() * (highest - 1 )) + 1 )}
-                            //var randomUsernames = [];
+                            
                             let l = 0 ;
                             while ( l < 2 ){
                                 let ranLen = Math.floor(( Math.random() * ( 5 - 1 )) + 1 )
@@ -186,16 +189,17 @@ export default {
                                     l++;
                                 }
                             }
-                            //console.log(randomUsernames);
-                            //this.ranUserName = randomUsernames;
+                            
+                            
+                            
                             this.userSug = true;
                         }else{
                             this.usr_err = false;
                             this.us_msg = 'User name have to be unique';
                             auth.createUserWithEmailAndPassword(this.email,this.password)
                             .then((result) => {
-                                // console.log('Account created');
-                                // console.log(result.user.uid);
+                                
+                                
                                 db.collection('Users').add({
                                     _id:result.user.uid,
                                     userName:this.userName,
@@ -207,15 +211,15 @@ export default {
                                 })
                                 .then( () => {
                                     this.showLoading = false;
-                                    //console.log('AcountData:',result);
+                                    
                                     this.$router.push('/signin');
                                 })
-                                // .catch((err) => {
-                                //     //console.log('error saving account data');
-                                // });
+                                
+                                
+                                
                             }).catch((err) => {
-                                //console.log(err);
-                                //console.log('Error creating account',err.code);
+                                
+                                
                                 if( err.code === 'auth/email-already-in-use'){
                                     this.em_err = true;
                                     this.em_msg = 'Email already used'
@@ -231,38 +235,38 @@ export default {
                                 this.showLoading = false;
                             });
                         }
-                        //if( doc.data().empty ){
+                        
                             
-                        //}
-                        //else{
-                            //console.log('Duplicate username');
-                            //dup = true ;
+                        
+                        
+                            
+                            
                             
 
-                            // db.collection('Users')
-                            //     .orderBy('userName')
-                            //     .startAt(this.userName)
-                            //     .endAt(this.userName+'\uf8ff')
-                            //     .get()
-                            //     .then( dataSnapshot => {
-                            //         console.log('dataSnapshot',dataSnapshot);
-                            //         dataSnapshot.forEach( doc => {
-                            //             console.log('Username: ',doc.data().userName);
-                            //         })
-                            //     })
-                            //     .catch( err => {
-                            //         console.log(err);
-                            //     })
-                        //}
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        
                     })
-                //})
-                // .catch((err) => {
-                //     //console.log(err);
-                // });
+                
+                
+                
+                
             }
-            // else{
-            //     //console.log('filled Error');
-            // }
+            
+            
+            
         }
     }
 }

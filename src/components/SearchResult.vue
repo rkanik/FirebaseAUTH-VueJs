@@ -3,7 +3,7 @@
         <Spinner v-if=HaveResult />
         <div class="no-fo-di" v-if=nothingFound >
             <p>Result not found!!</p>
-            <img @click="HideSearch" src="https://img.icons8.com/ios/50/000000/delete-sign-filled.png">
+            
         </div>
         <div class="on-he" v-if=!nothingFound>
             <h3 class="se-re-h3" >Searched Result</h3>
@@ -38,11 +38,11 @@ export default {
         Spinner
     },
     created(){
-        //console.log('created: SearchResult');
+        
 
         bus.$on('MovieFound', Post => {
             this.Post = Post;
-            //console.log(this.Post);
+            
             this.HaveResult = false
             this.nothingFound = false;
         })

@@ -108,8 +108,8 @@
                         this.userName = document.data().userName;
                         this.email = document.data().email;
                         this.favCat = document.data().favCategories;
-                        //console.log('This favCat: ',this.favCat);
-                        //console.log(this.fullName);
+                        
+                        
                     })
                 }).catch((err) => {
                     
@@ -118,9 +118,9 @@
             let coverRef = firebase.storage().ref(`Users/${this.uid}/CoverPhoto`);
             coverRef.getDownloadURL().then(
                 (url) => {
-                    //console.log(url);
+                    
                     this.coverSource = url
-                    //console.log(this.coverSource);
+                    
                 }).catch((err) => {
                 console.log(err);
             });
@@ -128,7 +128,7 @@
             let profileRef = firebase.storage().ref(`Users/${this.uid}/ProfilePhoto`);
             profileRef.getDownloadURL().then(
                 (url) => {
-                    //console.log(url);
+                    
                     this.profileThumbnail = url
                 }).catch((err) => {
                 console.log(err);
@@ -148,7 +148,7 @@
                 let storageRef = firebase.storage().ref(`Users/${this.uid}/CoverPhoto`)
                 let task = storageRef.put(file);
 
-                //let isComplete = true ;
+                
                 task.on('state_changed',
                     (snapshot) => {
                         console.log(snapshot);
@@ -167,7 +167,7 @@
                             }).catch((err) => {
                             console.log(err);
                         });
-                        //console.log(this.$router);
+                        
                     }
                 )
             },
@@ -179,7 +179,7 @@
                 let storageRef = firebase.storage().ref(`Users/${this.uid}/ProfilePhoto`)
                 let task = storageRef.put(file);
 
-                //let isComplete = true ;
+                
                 task.on('state_changed',
                     (snapshot) => {
                         console.log(snapshot);

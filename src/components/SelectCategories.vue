@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-// import uuid from 'uuid';
+
 import { bus } from '../main';
 import db from '../components/firebaseInit'
 const firebase = require('firebase');
@@ -36,15 +36,15 @@ export default {
         }
     },
     created(){
-        //console.log('conCreated select Categories');
+        
         
         db.collection('Users').where('_id', '==', auth.currentUser.uid )
             .get().then((result) => {
-                //console.log(result);
+                
                 result.forEach( doc => {
-                    //console.log(doc.data());
                     
-                   // console.log('this selected',this.Selected.length);
+                    
+                   
 
                     if( doc.data().favCategories.length !== 0 ){
                         this.Selected = doc.data().favCategories
@@ -58,9 +58,9 @@ export default {
                     }
                 })
             })
-        //     .catch((err) => {
-        //         console.log(err);
-        // });
+        
+        
+        
     },
     mounted(){
     },
@@ -76,7 +76,7 @@ export default {
             }
         },
         redSelected(event){
-            //console.log(event);
+            
             this.Categories.push(event.target.innerText);
             this.Selected = this.Selected.filter( data => data !== event.target.innerText )
             if(this.Selected.length > 0 ){
@@ -84,7 +84,7 @@ export default {
             }else{ this.isSomethingSelected = false }
         },
         showDeseltBtn(event){
-            //console.log(event);
+            
             this.deselect = true;
         },
         hideDeselectBtn(){
@@ -95,25 +95,25 @@ export default {
                 this.err = true;
             }else{
                 this.err = false ;
-                //console.log(this.Selected);
+                
 
                 db.collection('Users').where( '_id', '==' , auth.currentUser.uid)
                 .get().then((result) => {
                     result.forEach( doc => {
-                        //console.log(doc.data());
+                        
                         doc.ref.update({
                             favCategories:this.Selected
                         })
                         .then((result) => {
-                          //console.log('Success');
+                          
                           bus.$emit('Cat-Updated',this.Selected);
-                        //   this.$router.go({path:this.$router.path});
+                        
                         })
                     })
                 })
-                // .catch((err) => {
+                
                     
-                // });
+                
             }
         }
     }
